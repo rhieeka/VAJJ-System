@@ -1,5 +1,7 @@
 import React from "react";
-function Signup() {
+
+
+const Signup =()=> {
   return (
     <div className="index-page">
     <div className="index-box">

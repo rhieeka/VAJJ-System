@@ -35,7 +35,7 @@
   margin-left: 100px;
 }
 
-button.btn-info{
+.btn-info{
   background: gold;
   width: 200px;
   height:40px;
@@ -45,10 +45,19 @@ button.btn-info{
   border-radius: 15px;
 }
 
-button.btn-info:hover{
+.btn-primary{
+  background: gold;
+}
+
+btn.primary .btn-info:hover{
  background: #0f69af;
 }
 
 .navbar{
   background: #aee2ff;
+}
+
+
+.icon{
+  margin-right: 10px;
 }
