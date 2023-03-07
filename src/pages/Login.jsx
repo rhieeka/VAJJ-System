@@ -1,33 +1,47 @@
 import React, {useState} from "react";
-import logo from "../images/VAJJ.png"
+import logo from "../images/VAJJ.png";
+import { useNavigate } from 'react-router-dom';
 
 
-const Login =props=> {
+const Login =()=> {
     // State variables
-    const [form, setForm] = useState({
-        username: "",
-        password: "",
-      });
+    const [username, setUserName] = useState();
+    const [password, setPassword] = useState();
+    let navi = useNavigate();
+
+    const database = [
+      {
+          username: "admin",
+          password: "admin"
+      }
+  ];
+
+  async function handleSubmit(event) {
+ event.preventDefault();
+      const userData = database.find((n) => n.username === username);
+      if (userData) {
+          if (userData.password === password) {
+              navi('/dashboard');
+          }
+          else {
+              alert("Invalid username or Password");
+          }
+      }
+      else {
+          alert("Invalid username or Password");
+      }
+      setUserName("");
+      setPassword("");
 
 
-  const onUpdateField = e => {
-    const nextFormState = {
-      form,[e.target.name]: e.target.value,
-    };
-    setForm(nextFormState);
-  };
-
-  const onSubmitForm = e => {
-    e.preventDefault();
-    alert(JSON.stringify("Please try again"));
-  };
-
+  }
 
 
   return (
     <div className="index-page">
     <div className="index-box">
-     <form onSubmit={onSubmitForm} className="form-horizontal" id="login_form">
+     <form onSubmit={handleSubmit} className="form-horizontal" id="login_form">
+    
      <img className="logo" alt="logo" src={logo}/>
         <h3 className="text-center">Sign In</h3>
 
@@ -35,8 +49,8 @@ const Login =props=> {
           <label>Username</label>
           <input
           name= "username"
-          value={form.username}
-          onChange={onUpdateField}
+          value={username}
+          onChange={(event) => setUserName(event.target.value)}
             type="text"
             className="form-control"
             placeholder="Enter Username"
@@ -48,8 +62,8 @@ const Login =props=> {
           <label>Password</label>
           <input
           name="password"
-          value={form.password}
-          onChange={onUpdateField}
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
             type="password"
             className="form-control"
             placeholder="Enter Password"
@@ -71,7 +85,7 @@ const Login =props=> {
         </div>
 
         <div className="form-group">
-         <a href="/view">
+         <a href="/dashboard">
          <button type="submit" className="btn btn-info fw-medium" >
            Login
           </button>

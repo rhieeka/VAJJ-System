@@ -39,7 +39,7 @@ const Navbar = () => {
               </li>
               <li>
                 <a className="dropdown-item" href="/logout">
-                  <FontAwesomeIcon className="icon" icon={faRightFromBracket} />{" "}
+                  <FontAwesomeIcon className="icon" icon={faRightFromBracket} />
                   Logout
                 </a>
               </li>
